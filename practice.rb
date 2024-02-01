@@ -37,34 +37,51 @@ kellogcoin = [
   {"user" => "anthony", "balance" => 0}
 ]
 
-# Loop through blockchain and modify balances to kellogcoin
-for txn in blockchain
+# # Loop through blockchain and modify balances to kellogcoin
 
-  #check for debits and deduct balances
+# for txn in blockchain
 
-  if txn["from_user"] == "ben"
-    kellogcoin[0]["balance"] = kellogcoin[0]["balance"] - txn["amount"]
-  elsif txn["from_user"] == "brian"
-    kellogcoin[1]["balance"] = kellogcoin[1]["balance"] - txn["amount"]
-  elsif txn["from_user"] == "evan"
-    kellogcoin[2]["balance"] = kellogcoin[2]["balance"] - txn["amount"]
-  elsif txn["from_user"] == "anthony"
-    kellogcoin[3]["balance"] = kellogcoin[3]["balance"] - txn["amount"]    
-  else
-  end
+#   #check for debits and deduct balances
 
-  #check for credits and add balances
+#   if txn["from_user"] == "ben"
+#     kellogcoin[0]["balance"] = kellogcoin[0]["balance"] - txn["amount"]
+#   elsif txn["from_user"] == "brian"
+#     kellogcoin[1]["balance"] = kellogcoin[1]["balance"] - txn["amount"]
+#   elsif txn["from_user"] == "evan"
+#     kellogcoin[2]["balance"] = kellogcoin[2]["balance"] - txn["amount"]
+#   elsif txn["from_user"] == "anthony"
+#     kellogcoin[3]["balance"] = kellogcoin[3]["balance"] - txn["amount"]    
+#   else
+#   end
 
-  if txn["to_user"] == "ben"
-    kellogcoin[0]["balance"] = kellogcoin[0]["balance"] + txn["amount"]
-  elsif txn["to_user"] == "brian"
-    kellogcoin[1]["balance"] = kellogcoin[1]["balance"] + txn["amount"]
-  elsif txn["to_user"] == "evan"
-    kellogcoin[2]["balance"] = kellogcoin[2]["balance"] + txn["amount"]
-  elsif txn["to_user"] == "anthony"
-    kellogcoin[3]["balance"] = kellogcoin[3]["balance"] + txn["amount"]    
-  else
-  end
+#   #check for credits and add balances
+
+#   if txn["to_user"] == "ben"
+#     kellogcoin[0]["balance"] = kellogcoin[0]["balance"] + txn["amount"]
+#   elsif txn["to_user"] == "brian"
+#     kellogcoin[1]["balance"] = kellogcoin[1]["balance"] + txn["amount"]
+#   elsif txn["to_user"] == "evan"
+#     kellogcoin[2]["balance"] = kellogcoin[2]["balance"] + txn["amount"]
+#   elsif txn["to_user"] == "anthony"
+#     kellogcoin[3]["balance"] = kellogcoin[3]["balance"] + txn["amount"]    
+#   else
+#   end
+
+# end
+
+# trying an elegant solution
+
+for id in kellogcoin
+
+  for txn in blockchain
+    
+    if txn["from_user"] == id["user"]
+      id["balance"] = id["balance"] - txn["amount"]
+    elsif txn["to_user"] == id["user"]
+      id["balance"] = id["balance"] + txn["amount"]   
+    else end  
+  
+    end  
 
 end
 

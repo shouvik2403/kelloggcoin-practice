@@ -27,3 +27,49 @@ blockchain = [
 # Anthony's KelloggCoin balance is 2650
 
 # 👇👇👇 Your code HERE 👇👇👇
+
+#initiatilizing a user array and setting balance = 0
+
+kellogcoin = [
+  {"user" => "ben", "balance" => 0},
+  {"user" => "brian", "balance" => 0},
+  {"user" => "evan", "balance" => 0},
+  {"user" => "anthony", "balance" => 0}
+]
+
+# Loop through blockchain and modify balances to kellogcoin
+for txn in blockchain
+
+  #check for debits and deduct balances
+
+  if txn["from_user"] == "ben"
+    kellogcoin[0]["balance"] = kellogcoin[0]["balance"] - txn["amount"]
+  elsif txn["from_user"] == "brian"
+    kellogcoin[1]["balance"] = kellogcoin[1]["balance"] - txn["amount"]
+  elsif txn["from_user"] == "evan"
+    kellogcoin[2]["balance"] = kellogcoin[2]["balance"] - txn["amount"]
+  elsif txn["from_user"] == "anthony"
+    kellogcoin[3]["balance"] = kellogcoin[3]["balance"] - txn["amount"]    
+  else
+  end
+
+  #check for credits and add balances
+
+  if txn["to_user"] == "ben"
+    kellogcoin[0]["balance"] = kellogcoin[0]["balance"] + txn["amount"]
+  elsif txn["to_user"] == "brian"
+    kellogcoin[1]["balance"] = kellogcoin[1]["balance"] + txn["amount"]
+  elsif txn["to_user"] == "evan"
+    kellogcoin[2]["balance"] = kellogcoin[2]["balance"] + txn["amount"]
+  elsif txn["to_user"] == "anthony"
+    kellogcoin[3]["balance"] = kellogcoin[3]["balance"] + txn["amount"]    
+  else
+  end
+
+end
+
+# print balances
+
+for id in kellogcoin
+  puts "#{id["user"]}'s Kelloggcoin balance is #{id["balance"]}"
+end
